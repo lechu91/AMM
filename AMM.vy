@@ -23,12 +23,13 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
 	assert self.invariant == 0 #This ensures that liquidity can only be provided once
 	#Your code here
 	self.owner = msg.sender
+	self.tokenA = ERC20(tokenA_addr)
+	self.tokenA.transferFrom(msg.sender, self, tokenA_quantity)
 	self.tokenAQty = tokenA_quantity
+	self.tokenB = ERC20(tokenB_addr)
+	self.tokenB.transferFrom(msg.sender, self, tokenA_quantity)
 	self.tokenBQty = tokenB_quantity
 	self.invariant = self.tokenAQty * self.tokenBQty
-	
-	transferFrom(self.owner, self.tokenA.address, as_unitless_number(tokenA_quantity))
-	transferFrom(self.owner, self.tokenB.address, as_unitless_number(tokenB_quantity))
 	
 	assert self.invariant > 0
 
