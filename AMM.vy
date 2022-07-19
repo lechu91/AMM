@@ -18,6 +18,7 @@ def get_token_address(token: uint256) -> address:
 
 # Sets the on chain market maker with its owner, and initial token quantities
 @external
+@payable
 def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity: uint256, tokenB_quantity: uint256):
 	assert self.invariant == 0 #This ensures that liquidity can only be provided once
 	#Your code here
@@ -46,6 +47,6 @@ def tradeTokens(sell_token: address, sell_quantity: uint256):
 def ownerWithdraw():
     assert self.owner == msg.sender
 	#Your code here
-	self.tokenA.address.transfer(self.owner, self.tokenAQty)
-	self.tokenB.address.transfer(self.owner, self.tokenBQty)
+	tokenA.send(self.owner, self.tokenAQty)
+	#self.tokenB.address.transfer(self.owner, self.tokenBQty)
 	self.invariant = 0
