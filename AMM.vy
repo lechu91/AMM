@@ -22,11 +22,11 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
 	assert self.invariant == 0 #This ensures that liquidity can only be provided once
 	#Your code here
 	
-	tokenAQty = tokenA_quantity
-	tokenBQty = tokenB_quantity
-	invariant = tokenAQty * tokenBQty
-	tokenA = tokenA_addr
-	tokenB = tokenB_addr
+	self.tokenAQty = tokenA_quantity
+	self.tokenBQty = tokenB_quantity
+	self.invariant = tokenAQty * tokenBQty
+	self.tokenA = tokenA_addr
+	self.tokenB = tokenB_addr
 	
 	assert self.invariant > 0
 
@@ -35,6 +35,9 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
 def tradeTokens(sell_token: address, sell_quantity: uint256):
 	assert sell_token == self.tokenA.address or sell_token == self.tokenB.address
 	#Your code here
+	
+	
+	
 
 # Owner can withdraw their funds and destroy the market maker
 @external
