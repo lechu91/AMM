@@ -21,6 +21,13 @@ def get_token_address(token: uint256) -> address:
 def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity: uint256, tokenB_quantity: uint256):
 	assert self.invariant == 0 #This ensures that liquidity can only be provided once
 	#Your code here
+	
+	tokenAQty = tokenA_quantity
+	tokenBQty = tokenB_quantity
+	invariant = tokenAQty * tokenBQty
+	tokenA = tokenA_addr
+	tokenB = tokenB_addr
+	
 	assert self.invariant > 0
 
 # Trades one token for the other
