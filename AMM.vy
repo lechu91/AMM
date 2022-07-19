@@ -27,8 +27,8 @@ def provideLiquidity(tokenA_addr: address, tokenB_addr: address, tokenA_quantity
 	self.tokenBQty = tokenB_quantity
 	self.invariant = self.tokenAQty * self.tokenBQty
 	
-	transferFrom(tokenA_addr, self.tokenA.address, as_unitless_number(tokenA_quantity))
-	transferFrom(tokenB_addr, self.tokenB.address, as_unitless_number(tokenB_quantity))
+	transferFrom(self.owner, self.tokenA.address, as_unitless_number(tokenA_quantity))
+	transferFrom(self.owner, self.tokenB.address, as_unitless_number(tokenB_quantity))
 	
 	assert self.invariant > 0
 
